@@ -3,9 +3,9 @@ import React from "react";
 export default function Nav() {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-transparent mb-3">
-      <div className="container">
+      <div className="container justify-content-start">
         <a className="navbar-brand" href="/"><span className="h2">StarDB</span></a>
-        <ul className="navbar-nav">
+        <ul className="navbar-nav justify-content-around w-50">
           <li className="nav-item">
             <a className="nav-link text-success" href="/">People</a>
           </li>

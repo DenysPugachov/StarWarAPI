@@ -8,7 +8,7 @@ const ErrorIndicator = () => {
       <div className="m-3">
         <h2 className="">BOOM!!!</h2>
         <h4>Something went terribly wrong...</h4>
-        <p>We sent droids to fix it</p>
+        <p>(we sent droids to fix it)</p>
       </div>
     </div>
   );
