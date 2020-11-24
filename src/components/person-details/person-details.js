@@ -31,7 +31,13 @@ export default class PersonDetails extends Component {
   }
 
   render() {
-    if (!this.state.person) { return <span>Select person!</span>; }
+    if (!this.state.person) {
+      return (
+        <div className="card ml-3 w-50" >
+          <h3 className="m-auto">Select person</h3>
+        </div>
+      );
+    }
 
     const { id, name, gender, height, birthYear, eyeColor } = this.state.person;
 

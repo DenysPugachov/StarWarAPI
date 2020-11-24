@@ -33,7 +33,13 @@ export default class ItemList extends Component {
   render() {
     const { peopleList } = this.state;
 
-    if (!peopleList) { return <Spinner />; }
+    if (!peopleList) {
+      return (
+        <ul className="card w-50 m-auto" >
+          <Spinner />
+        </ul>
+      );
+    }
 
     const items = this.renderItem(peopleList);
 

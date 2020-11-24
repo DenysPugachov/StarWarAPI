@@ -34,10 +34,12 @@ export default class App extends Component {
         <ToggleBtn
           toggleBtnClicked={ this.ontoggleBtnClicked }
         />
-        <ItemList
-          onItemSelected={ this.onPersonSelected }
-        />
-        <PersonDetails personId={ this.state.personSelected } />
+        <div className="d-flex justify-content-between">
+          <ItemList
+            onItemSelected={ this.onPersonSelected }
+          />
+          <PersonDetails personId={ this.state.personSelected } />
+        </div>
       </div>
     );
   }
