@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import SwapiService from "../../service/swapi-services";
+import ErrorBtn from "../error-btn/error-btn";
+import Spinner from "../spinner";
+import "./person-details.css";
 
 export default class PersonDetails extends Component {
 
@@ -7,17 +10,17 @@ export default class PersonDetails extends Component {
 
   state = {
     person: null,
+    loading: true,
   };
 
 
   updatePerson() {
-    console.log("updatePerson");
     const { personId } = this.props;
     if (!personId) { return; }
 
     this.swapiService
       .getPerson(personId)
-      .then((person) => this.setState({ person }));
+      .then((person) => this.setState({ person, loading: false, }));
   }
 
   componentDidMount() {
@@ -26,11 +29,13 @@ export default class PersonDetails extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.personId !== prevProps.personId) {
+      this.setState({ loading: true });
       this.updatePerson();
     }
   }
 
   render() {
+
     if (!this.state.person) {
       return (
         <div className="card ml-3 w-50" >
@@ -38,14 +43,16 @@ export default class PersonDetails extends Component {
         </div>
       );
     }
+    const { loading, person: { id, name, gender, height, birthYear, eyeColor } } = this.state;
 
-    const { id, name, gender, height, birthYear, eyeColor } = this.state.person;
+    if (loading) { return (<Spinner />); }
+
 
     return (
       <div className="card flex-row mb-3" >
-        <img className="m-3 rounded"
+        <img className="m-3 rounded detail-img"
           src={ `https://starwars-visualguide.com/assets/img/characters/${id}.jpg` }
-          alt="personImg"></img>
+          alt="personImg" />
         <div className="card-body" >
           <h3 className="card-title">{ name } { this.props.personId }</h3>
           <ul className=" list-group-flush">
@@ -53,6 +60,7 @@ export default class PersonDetails extends Component {
             <li className="list-group-item">Year <span>{ birthYear }</span> </li>
             <li className="list-group-item">Eye color <span>{ eyeColor }</span> </li>
             <li className="list-group-item">Height <span>{ height }</span> </li>
+            <ErrorBtn />
           </ul>
         </div >
       </div >
