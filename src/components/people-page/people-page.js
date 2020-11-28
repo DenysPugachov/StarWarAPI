@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import SwapiService from '../../service/swapi-services';
 import ErrorIndicator from '../error-indicator/error-indicator';
 import ItemList from '../item-list/item-list';
 import PersonDetails from '../person-details/person-details';
 
 export default class PeoplePage extends Component {
+  swapiService = new SwapiService();
 
   state = {
     personSelected: 10,
@@ -11,7 +13,6 @@ export default class PeoplePage extends Component {
   };
 
   componentDidCatch(error, info) {
-    // debugger;
     this.setState({ hasError: true });
   }
 
@@ -23,9 +24,11 @@ export default class PeoplePage extends Component {
     if (this.state.hasError) { return <ErrorIndicator />; }
 
     return (
-      <div className="d-flex">
+      <div className="d-flex ">
         <ItemList
           onItemSelected={ this.onPersonSelected }
+          getData={ this.swapiService.getAllPeople }
+          renderItem={ ({ name, gender, birthYear }) => `${name} (${gender}, ${birthYear})` }
         />
         <PersonDetails personId={ this.state.personSelected } />
       </div>);

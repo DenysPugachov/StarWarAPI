@@ -7,11 +7,14 @@ import ItemList from "../item-list/item-list";
 import ErrorBtn from "../error-btn/error-btn";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
+import SwapiService from "../../service/swapi-services";
 
 export default class App extends Component {
 
+  swapiService = new SwapiService();
+
   state = {
-    showRandomPlanet: true,
+    showRandomPlanet: false,
     hasError: false,
   };
 
@@ -36,14 +39,35 @@ export default class App extends Component {
     return (
       <div className="container" >
         <Nav />
-        {showRandomPlanet ? <RandomPlanet /> : null }
         <ToggleBtn
           toggleBtnClicked={ this.ontoggleBtnClicked }
         />
         <ErrorBtn />
+        {showRandomPlanet ? <RandomPlanet /> : null }
+
         <PeoplePage />
-        <PeoplePage />
-        <PeoplePage />
+
+        <div className="d-flex">
+          <ItemList
+            onItemSelected={ this.onPersonSelected }
+            getData={ this.swapiService.getAllPlanets }
+            renderItem={ item =>
+              <span>
+                { item.name } <button className="btn btn-outline-warning">!</button>
+              </span>
+            }
+          />
+          <PersonDetails personId={ this.state.personSelected } />
+        </div>);
+
+        <div className="d-flex">
+          <ItemList
+            onItemSelected={ this.onPersonSelected }
+            getData={ this.swapiService.getAllStarships }
+            renderItem={ item => item.name }
+          />
+          <PersonDetails personId={ this.state.personSelected } />
+        </div>);
       </div>
     );
   }
