@@ -3,6 +3,15 @@ export default class SwapiService {
 
   _apiBase = "https://swapi.dev/api";
 
+  listOffline = [
+    { name: "item1" },
+    { name: "item2" },
+    { name: "item3" },
+    { name: "item4" },
+    { name: "item5" },
+    { name: "item6" },
+  ];
+
   async getResource(url) {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -13,7 +22,8 @@ export default class SwapiService {
 
   getAllPeople = async () => {
     const res = await this.getResource(`/people/`);
-    return res.results.map(this._transformPerson);
+    // return res.results.map(this._transformPerson);
+    return this.listOffline;
   };
 
   getPerson = async (id) => {
