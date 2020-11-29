@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SwapiService from "../../service/swapi-services";
 import Spinner from "../spinner";
 
 export default class ItemList extends Component {
@@ -21,7 +20,7 @@ export default class ItemList extends Component {
     return arr.map(item => {
 
       const { id } = item;
-      const label = this.props.renderItem(item);
+      const label = this.props.children(item);
 
       return (
         <li
@@ -48,7 +47,7 @@ export default class ItemList extends Component {
     const items = this.renderItem(itemList);
 
     return (
-      <ul className="list-group mb-3 w-25" >
+      <ul className="list-group" >
         { items }
       </ul>
     );

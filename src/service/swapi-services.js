@@ -1,3 +1,6 @@
+import PersonImg from "../img/person1.jpg";
+import StarshipImg from "../img/starship13.jpg";
+
 
 export default class SwapiService {
 
@@ -54,6 +57,13 @@ export default class SwapiService {
     cargoCapacity: "starship.cargoCapacity",
   };
 
+  getImgPerson = (id) => {
+    return PersonImg;
+  };
+
+  getImgStarship = (id) => {
+    return StarshipImg;
+  };
 
   async getResource(url) {
     const res = await fetch(`${this._apiBase}${url}`);
