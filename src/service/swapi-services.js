@@ -46,15 +46,14 @@ export default class SwapiService {
 
   starshipOffline = {
     id: 1,
-    name: "starship.name",
-    model: "starship.model",
-    manufacture: "starship.manufacture",
-    eyeColor: "starship.eyeColor",
-    costInCredits: "starship.costInCredits",
-    length: "starship.length",
-    crew: "starship.crew",
-    passengers: "starship.passengers",
-    cargoCapacity: "starship.cargoCapacity",
+    name: "Space auto ",
+    model: "e36",
+    manufacture: "BMW",
+    costInCredits: "10000EUR",
+    length: "5m.",
+    crew: "1 pilot",
+    passengers: "5 human",
+    cargoCapacity: "500kg.",
   };
 
   getImgPerson = (id) => {
@@ -141,7 +140,6 @@ export default class SwapiService {
       name: starship.name,
       model: starship.model,
       manufacture: starship.manufacture,
-      eyeColor: starship.eyeColor,
       costInCredits: starship.costInCredits,
       length: starship.length,
       crew: starship.crew,

@@ -6,6 +6,17 @@ import Spinner from "../spinner";
 // import PersonImg1 from "../../img/person1.jpg";
 import "./item-details.css";
 
+
+const Record = ({ item, label, field }) => {
+  return (
+    <li className="list-group-item">
+      <span>{ label }</span>
+      <span>{ item[field] }</span>
+    </li>
+  );
+};
+export { Record };
+
 export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
@@ -17,9 +28,8 @@ export default class ItemDetails extends Component {
 
 
   updateItem() {
-    const { itemId } = this.props;
+    const { itemId, getData } = this.props;
     if (!itemId) { return; }
-    const { getData } = this.props;
 
     getData(itemId)
       .then((item) => this.setState({ item, loading: false, }));
@@ -45,7 +55,7 @@ export default class ItemDetails extends Component {
       );
     }
 
-    const { loading, item: { id, name, gender, height, birthYear, eyeColor } } = this.state;
+    const { loading, item, item: { id, name, gender, height, birthYear, eyeColor } } = this.state;
 
     if (loading) { return (<Spinner />); }
 
@@ -56,15 +66,18 @@ export default class ItemDetails extends Component {
             <img className="m-3 rounded detail-img img-fluid"
               // src={ `https://starwars-visualguide.com/assets/img/characters/${id}.jpg` }
               src={ this.props.getImg() }
-              alt="here must be an Img..." />
+              alt="Image here..." />
           </div>
           <div className="card-body pb-0 " >
             <h3 className="card-title">{ name } { this.props.personId }</h3>
             <ul className=" list-group-flush p-0">
-              <li className="list-group-item">Gender: <span>{ gender }</span> </li>
-              <li className="list-group-item">Year: <span>{ birthYear }</span> </li>
-              <li className="list-group-item">Eye color: <span>{ eyeColor }</span> </li>
-              <li className="list-group-item">Height: <span>{ height }</span> </li>
+              {
+                React.Children.map(this.props.children, child => {
+                  //React element are IMMUTABLE!!!
+                  //copy elem + prop "item";
+                  return React.cloneElement(child, { item });
+                })
+              }
               <ErrorBtn />
             </ul>
           </div >
@@ -73,3 +86,4 @@ export default class ItemDetails extends Component {
     );
   }
 };
+
