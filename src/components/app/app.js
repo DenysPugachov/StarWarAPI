@@ -24,7 +24,7 @@ export default class App extends Component {
   };
 
   componentDidCatch() {
-    console.log("componentDidCatch");
+    console.log("componentDidCatch + just commit");
     this.setState({ hasError: true });
   }
 
