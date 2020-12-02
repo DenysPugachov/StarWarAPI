@@ -3,9 +3,7 @@ import SwapiService from "../../service/swapi-services";
 import ErrorBoundary from "../error-boundary/error-boundary";
 import ErrorBtn from "../error-btn/error-btn";
 import Spinner from "../spinner";
-// import PersonImg1 from "../../img/person1.jpg";
 import "./item-details.css";
-
 
 const Record = ({ item, label, field }) => {
   return (
@@ -25,7 +23,6 @@ export default class ItemDetails extends Component {
     item: null,
     loading: true,
   };
-
 
   updateItem() {
     const { itemId, getData } = this.props;
@@ -86,4 +83,3 @@ export default class ItemDetails extends Component {
     );
   }
 };
-

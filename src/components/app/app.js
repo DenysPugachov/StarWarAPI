@@ -9,6 +9,14 @@ import SwapiService from "../../service/swapi-services";
 import Row from "../row-container/row-container";
 import ItemDetails, { Record } from "../item-details/item-details";
 import PeoplePage from "../people-page/people-page";
+import {
+  PersonList,
+  StarshipsList,
+  PlanetList,
+  PersonDetails,
+  StarshipsDetails,
+  PlanetDetails
+} from "../sw-components";
 
 
 export default class App extends Component {
@@ -70,18 +78,32 @@ export default class App extends Component {
     return (
       <div className="container" >
         <Nav />
+
         <ToggleBtn
           toggleBtnClicked={ this.ontoggleBtnClicked }
         />
+
         <ErrorBtn />
+
         {showRandomPlanet ? <RandomPlanet /> : null }
 
-        <PeoplePage />
-        <PeoplePage />
-        {/* <Row
-          left={ personDetails }
-          right={ starshipDetails }
-        /> */}
+        <Row
+          left={
+            <PersonList >
+              { ({ name }) => <span>{ name }</span> }
+            </PersonList > }
+          right={
+            <ItemDetails /> }
+        />
+
+        <PlanetList >
+          { ({ name }) => <span>{ name }</span> }
+        </PlanetList >
+
+        <StarshipsList >
+          { ({ name }) => <span>{ name }</span> }
+        </StarshipsList >
+
       </div>
     );
   }

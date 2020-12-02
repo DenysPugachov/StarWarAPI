@@ -19,12 +19,10 @@ const ItemList = (props) => {
   });
 
   return (
-    <ul className="list-group" >
+    <ul className="list-group mb-3">
       { items }
     </ul>
   );
 };
 
-const { getAllPeople } = new SwapiService();
-
-export default withDataHOC(ItemList, getAllPeople);
+export default ItemList;

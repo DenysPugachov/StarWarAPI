@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Spinner from "../spinner";
 import ErrorBoundary from "../error-boundary/error-boundary";
 
-
 const withDataHOC = (View, getData) => {
-
   return class extends Component {
     state = {
       data: null,
@@ -28,7 +26,7 @@ const withDataHOC = (View, getData) => {
       }
       return (
         <ErrorBoundary>
-          <View { ...this.props } data={ data } />;
+          <View { ...this.props } data={ data } />
         </ErrorBoundary>
       );
     }

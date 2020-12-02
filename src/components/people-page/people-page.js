@@ -24,7 +24,7 @@ export default class PeoplePage extends Component {
         // getData={ this.swapiService.getAllPeople }
         renderItem={ (i) => (`${i.name}, (${i.birthYear})`) }
       >
-        { i => `${i.name}, (${i.birthYear})` }
+        { i => `${i.name} (${i.birthYear})` }
       </ItemList>
     );
 
