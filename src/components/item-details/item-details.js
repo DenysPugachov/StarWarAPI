@@ -52,7 +52,7 @@ export default class ItemDetails extends Component {
       );
     }
 
-    const { loading, item, item: { id, name, gender, height, birthYear, eyeColor } } = this.state;
+    const { loading, item, item: { name } } = this.state;
 
     if (loading) { return (<Spinner />); }
 
@@ -61,9 +61,8 @@ export default class ItemDetails extends Component {
         <div className="card flex-row mb-3 border-secondary " >
           <div className="col-md-5">
             <img className="m-3 rounded detail-img img-fluid"
-              // src={ `https://starwars-visualguide.com/assets/img/characters/${id}.jpg` }
               src={ this.props.getImg() }
-              alt="Image here..." />
+              alt="Img here..." />
           </div>
           <div className="card-body pb-0 " >
             <h3 className="card-title">{ name } { this.props.personId }</h3>

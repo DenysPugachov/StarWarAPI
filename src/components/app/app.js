@@ -6,6 +6,7 @@ import ItemList from "../item-list/item-list";
 import ErrorBtn from "../error-btn/error-btn";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../service/swapi-services";
+import DummySwapiService from "../../service/dummy-swapi-service";
 import Row from "../row-container/row-container";
 import ItemDetails, { Record } from "../item-details/item-details";
 import PeoplePage from "../people-page/people-page";
@@ -46,7 +47,7 @@ export default class App extends Component {
 
     if (hasError) { return <ErrorIndicator />; }
 
-    const { getPerson, getStarship, getImgPerson, getImgStarship } = this.swapiService;
+    const { getPerson, getStarship, getImgPerson, getImgStarship, getPlanet, getImgPlanet } = this.swapiService;
 
     const personDetails = (
       <ItemDetails
@@ -75,6 +76,19 @@ export default class App extends Component {
       </ItemDetails>
     );
 
+    const planetDetails = (
+      <ItemDetails
+        itemId={ 5 }
+        getData={ getPlanet }
+        getImg={ getImgPlanet }
+      >
+        <Record field="name" label="name: " />
+        <Record field="population" label="population: " />
+        <Record field="rotationPeriod" label="rotationPeriod: " />
+        <Record field="diameter" label="diameter: " />city: " />
+      </ItemDetails>
+    );
+
     return (
       <div className="container" >
         <Nav />
@@ -92,19 +106,28 @@ export default class App extends Component {
             <PersonList >
               { ({ name }) => <span>{ name }</span> }
             </PersonList > }
-          right={
-            <ItemDetails /> }
+          right={ personDetails }
         />
 
-        <PlanetList >
-          { ({ name }) => <span>{ name }</span> }
-        </PlanetList >
+        <Row
+          left={
+            <StarshipsList >
+              { ({ name }) => <span>{ name }</span> }
+            </StarshipsList >
+          }
+          right={ starshipDetails }
+        />
 
-        <StarshipsList >
-          { ({ name }) => <span>{ name }</span> }
-        </StarshipsList >
+        <Row
+          left={
+            <PlanetList >
+              { ({ name }) => <span>{ name }</span> }
+            </PlanetList >
+          }
+          right={ planetDetails }
+        />
 
-      </div>
+      </div >
     );
   }
 };

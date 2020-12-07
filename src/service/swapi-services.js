@@ -1,5 +1,6 @@
 import PersonImg from "../img/person1.jpg";
 import StarshipImg from "../img/starship13.jpg";
+import PlanetImg from "../img/planet5.jpg";
 
 
 export default class SwapiService {
@@ -34,7 +35,14 @@ export default class SwapiService {
     { name: "Starship6", id: 6 },
   ];
 
-  personOffline = { id: 1, name: "Luck Skylarker", gender: "male", height: "185sm", birthYear: 1985, eyeColor: "green" };
+  personOffline = {
+    id: 1,
+    name: "Luck Skylarker",
+    gender: "male",
+    height: "185sm",
+    birthYear: 1985,
+    eyeColor: "green"
+  };
 
   planetOffline = {
     id: 1,
@@ -58,6 +66,10 @@ export default class SwapiService {
 
   getImgPerson = (id) => {
     return PersonImg;
+  };
+
+  getImgPlanet = (id) => {
+    return PlanetImg;
   };
 
   getImgStarship = (id) => {

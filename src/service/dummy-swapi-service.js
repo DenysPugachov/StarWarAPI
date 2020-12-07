@@ -1,3 +1,9 @@
+import personImg from "./img/person1.jpg";
+import personImg2 from "./img/person2.jpg";
+import planetImg from "./img/planet5.jpg";
+import starshipImg from "./img/starship12.jpg";
+import starshipImg2 from "./img/starship13.jpg";
+
 export default class DummySwapiService {
 
   _people = [
@@ -62,7 +68,7 @@ export default class DummySwapiService {
   };
 
   getPlanet = async () => {
-    return this._planets[0]
+    return this._planets[0];
   };
 
   getAllStarships = async () => {
@@ -74,14 +80,14 @@ export default class DummySwapiService {
   };
 
   getPersonImage = () => {
-    return `https://placeimg.com/400/500/people`
+    return personImg;
   };
 
   getStarshipImage = () => {
-    return `https://placeimg.com/600/400/tech`;
+    return starshipImg;
   };
 
   getPlanetImage = () => {
-    return `https://placeimg.com/400/400/nature`
+    return planetImg;
   };
 }
