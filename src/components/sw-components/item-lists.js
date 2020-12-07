@@ -12,9 +12,30 @@ const {
   getAllPlanets,
 } = swapiService;
 
-const PersonList = withDataHOC(ItemList, getAllPeople);
-const StarshipsList = withDataHOC(ItemList, getAllStarships);
-const PlanetList = withDataHOC(ItemList, getAllPlanets);
+const withChildFunction = (Wrapper, fn) => {
+  return (props) => {
+    return (
+      <Wrapper { ...props }>
+        { fn }
+      </Wrapper >
+    );
+  };
+};
+
+const renderName = ({ name }) => <span>{ name }</span>;
+const listWithChildren = withChildFunction(ItemList, renderName);
+
+const PersonList = withDataHOC(
+  withChildFunction(ItemList, renderName),
+  getAllPeople);
+
+const StarshipsList = withDataHOC(
+  withChildFunction(ItemList, renderName),
+  getAllStarships);
+
+const PlanetList = withDataHOC(
+  withChildFunction(ItemList, renderName),
+  getAllPlanets);
 
 export {
   PersonList,
