@@ -15,7 +15,7 @@ import {
   StarshipsList,
   PlanetList,
   PersonDetails,
-  StarshipsDetails,
+  StarshipDetails,
   PlanetDetails
 } from "../sw-components";
 
@@ -47,47 +47,47 @@ export default class App extends Component {
 
     if (hasError) { return <ErrorIndicator />; }
 
-    const { getPerson, getStarship, getImgPerson, getImgStarship, getPlanet, getImgPlanet } = this.swapiService;
+    // const { getPerson, getStarship, getImgPerson, getImgStarship, getPlanet, getImgPlanet } = this.swapiService;
 
-    const personDetails = (
-      <ItemDetails
-        itemId={ 3 }
-        getData={ getPerson }
-        getImg={ getImgPerson }
-      >
-        <Record field="gender" label="Gender: " />
-        <Record field="eyeColor" label="Eye color: " />
-      </ItemDetails>
-    );
+    // const personDetails = (
+    //   <ItemDetails
+    //     itemId={ 3 }
+    //     getData={ getPerson }
+    //     getImg={ getImgPerson }
+    //   >
+    //     <Record field="gender" label="Gender: " />
+    //     <Record field="eyeColor" label="Eye color: " />
+    //   </ItemDetails>
+    // );
 
-    const starshipDetails = (
-      <ItemDetails
-        itemId={ 5 }
-        getData={ getStarship }
-        getImg={ getImgStarship }
-      >
-        <Record field="model" label="model: " />
-        <Record field="manufacture" label="manufacture: " />
-        <Record field="costInCredits" label="costInCredits: " />
-        <Record field="length" label="length: " />
-        <Record field="crew" label="crew: " />
-        <Record field="passengers" label="passengers: " />
-        <Record field="cargoCapacity" label="cargoCapacity: " />
-      </ItemDetails>
-    );
+    // const starshipDetails = (
+    //   <ItemDetails
+    //     itemId={ 5 }
+    //     getData={ getStarship }
+    //     getImg={ getImgStarship }
+    //   >
+    //     <Record field="model" label="model: " />
+    //     <Record field="manufacture" label="manufacture: " />
+    //     <Record field="costInCredits" label="costInCredits: " />
+    //     <Record field="length" label="length: " />
+    //     <Record field="crew" label="crew: " />
+    //     <Record field="passengers" label="passengers: " />
+    //     <Record field="cargoCapacity" label="cargoCapacity: " />
+    //   </ItemDetails>
+    // );
 
-    const planetDetails = (
-      <ItemDetails
-        itemId={ 5 }
-        getData={ getPlanet }
-        getImg={ getImgPlanet }
-      >
-        <Record field="name" label="name: " />
-        <Record field="population" label="population: " />
-        <Record field="rotationPeriod" label="rotationPeriod: " />
-        <Record field="diameter" label="diameter: " />
-      </ItemDetails>
-    );
+    // const planetDetails = (
+    //   <ItemDetails
+    //     itemId={ 5 }
+    //     getData={ getPlanet }
+    //     getImg={ getImgPlanet }
+    //   >
+    //     <Record field="name" label="name: " />
+    //     <Record field="population" label="population: " />
+    //     <Record field="rotationPeriod" label="rotationPeriod: " />
+    //     <Record field="diameter" label="diameter: " />
+    //   </ItemDetails>
+    // );
 
     return (
       <div className="container" >
@@ -106,7 +106,7 @@ export default class App extends Component {
             <PersonList >
               { ({ name }) => <span>{ name }</span> }
             </PersonList > }
-          right={ personDetails }
+          right={ <PersonDetails /> }
         />
 
         <Row
@@ -115,7 +115,7 @@ export default class App extends Component {
               { ({ name }) => <span>{ name }</span> }
             </StarshipsList >
           }
-          right={ starshipDetails }
+          right={ <StarshipDetails /> }
         />
 
         <Row
@@ -124,7 +124,7 @@ export default class App extends Component {
               { ({ name }) => <span>{ name }</span> }
             </PlanetList >
           }
-          right={ planetDetails }
+          right={ <PlanetDetails /> }
         />
 
       </div >

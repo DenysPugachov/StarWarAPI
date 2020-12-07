@@ -1,6 +1,6 @@
 import {
   PersonDetails,
-  StarshipsDetails,
+  StarshipDetails,
   PlanetDetails,
 } from "./details";
 
@@ -15,6 +15,6 @@ export {
   StarshipsList,
   PlanetList,
   PersonDetails,
-  StarshipsDetails,
+  StarshipDetails,
   PlanetDetails
 };
