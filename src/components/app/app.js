@@ -85,7 +85,7 @@ export default class App extends Component {
         <Record field="name" label="name: " />
         <Record field="population" label="population: " />
         <Record field="rotationPeriod" label="rotationPeriod: " />
-        <Record field="diameter" label="diameter: " />city: " />
+        <Record field="diameter" label="diameter: " />
       </ItemDetails>
     );
 
