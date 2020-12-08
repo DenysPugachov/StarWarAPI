@@ -1,5 +1,5 @@
 import React from "react";
-import SwapiService from "../../service/swapi-services";
+import SwapiService from "../../service/swapi-service-offline";
 import withDataHOC from "../hoc-helper/with-data-hoc";
 import ItemList from "../item-list/item-list";
 

@@ -4,7 +4,7 @@ import RandomPlanet from "../random-planet/random-planet";
 import ToggleBtn from "../toggleBtn/toggleBtn";
 import ErrorBtn from "../error-btn/error-btn";
 import ErrorIndicator from "../error-indicator/error-indicator";
-import SwapiService from "../../service/swapi-services";
+import SwapiService from "../../service/swapi-service";
 import DummySwapiService from "../../service/dummy-swapi-service";
 import Row from "../row-container/row-container";
 import {
@@ -19,7 +19,7 @@ import { SwapiServiceProvider } from "../swapi-service-context/";
 
 export default class App extends Component {
 
-  swapiService = new DummySwapiService();
+  swapiService = new SwapiService();
 
   state = {
     showRandomPlanet: false,

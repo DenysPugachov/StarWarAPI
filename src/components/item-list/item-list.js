@@ -1,6 +1,4 @@
 import React from "react";
-import SwapiService from "../../service/swapi-services";
-import withDataHOC from "../hoc-helper/with-data-hoc";
 
 const ItemList = (props) => {
   const { onItemSelected, children, data } = props;
