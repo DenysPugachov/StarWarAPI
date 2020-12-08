@@ -15,11 +15,11 @@ import {
   StarshipDetails,
   PlanetDetails
 } from "../sw-components";
-
+import { SwapiServiceProvider } from "../swapi-service-context/";
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
+  swapiService = new DummySwapiService();
 
   state = {
     showRandomPlanet: false,
@@ -45,33 +45,35 @@ export default class App extends Component {
     if (hasError) { return <ErrorIndicator />; }
 
     return (
-      <div className="container" >
-        <Nav />
+      <SwapiServiceProvider value={ this.swapiService }>
+        <div className="container" >
+          <Nav />
 
-        <ToggleBtn
-          toggleBtnClicked={ this.ontoggleBtnClicked }
-        />
+          <ToggleBtn
+            toggleBtnClicked={ this.ontoggleBtnClicked }
+          />
 
-        <ErrorBtn />
+          <ErrorBtn />
 
-        {showRandomPlanet ? <RandomPlanet /> : null }
+          { showRandomPlanet ? <RandomPlanet /> : null }
 
-        <Row
-          left={ <PersonList /> }
-          right={ <PersonDetails itemId={ 3 } /> }
-        />
+          <Row
+            left={ <PersonList /> }
+            right={ <PersonDetails itemId={ 3 } /> }
+          />
 
-        <Row
-          left={ <StarshipsList /> }
-          right={ <StarshipDetails itemId={ 3 } /> }
-        />
+          <Row
+            left={ <StarshipsList /> }
+            right={ <StarshipDetails itemId={ 3 } /> }
+          />
 
-        <Row
-          left={ <PlanetList /> }
-          right={ <PlanetDetails itemId={ 3 } /> }
-        />
+          <Row
+            left={ <PlanetList /> }
+            right={ <PlanetDetails itemId={ 3 } /> }
+          />
 
-      </div >
+        </div >
+      </SwapiServiceProvider>
     );
   }
 };

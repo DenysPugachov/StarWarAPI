@@ -9,7 +9,7 @@ export default class DummySwapiService {
   _people = [
     {
       id: 1,
-      name: 'Bilbo Baggins [TEST DATA]',
+      name: 'Bilbo Baggins [TEST DATA OFFLINE]',
       gender: 'male',
       birthYear: 'long ago',
       eyeColor: 'dark brown'
@@ -17,7 +17,7 @@ export default class DummySwapiService {
 
     {
       id: 2,
-      name: 'Frodo Baggins [TEST DATA]',
+      name: 'Frodo Baggins [TEST DATA OFFLINE]',
       gender: 'male',
       birthYear: 'long ago',
       eyeColor: 'dark brown'
@@ -27,14 +27,14 @@ export default class DummySwapiService {
   _planets = [
     {
       id: 1,
-      name: 'Earth [TEST DATA]',
+      name: 'Earth [TEST DATA OFFLINE]',
       population: '7.530.000.000',
       rotationPeriod: '23 hours 56 seconds',
       diameter: '12.742 km'
     },
     {
       id: 2,
-      name: 'Venus [TEST DATA]',
+      name: 'Venus [TEST DATA OFFLINE]',
       population: 'not known',
       rotationPeriod: '243 days',
       diameter: '12.104 km'
@@ -44,7 +44,7 @@ export default class DummySwapiService {
   _starships = [
     {
       id: 1,
-      name: 'USS Enterprise [TEST DATA]',
+      name: 'USS Enterprise [TEST DATA OFFLINE]',
       model: 'NCC-1701-C',
       manufacturer: 'Northrop Grumman Shipbuilding',
       costInCredits: 'not known',
@@ -79,15 +79,15 @@ export default class DummySwapiService {
     return this._starships[0];
   };
 
-  getPersonImage = () => {
+  getImgPerson = () => {
     return personImg;
   };
 
-  getStarshipImage = () => {
+  getImgStarship = () => {
     return starshipImg;
   };
 
-  getPlanetImage = () => {
+  getImgPlanet = () => {
     return planetImg;
   };
 }

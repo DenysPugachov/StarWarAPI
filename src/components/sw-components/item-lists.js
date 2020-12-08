@@ -12,6 +12,7 @@ const {
   getAllPlanets,
 } = swapiService;
 
+//composition f(g(x))
 const withChildFunction = (Wrapper, fn) => {
   return (props) => {
     return (
@@ -23,7 +24,6 @@ const withChildFunction = (Wrapper, fn) => {
 };
 
 const renderName = ({ name }) => <span>{ name }</span>;
-const listWithChildren = withChildFunction(ItemList, renderName);
 
 const PersonList = withDataHOC(
   withChildFunction(ItemList, renderName),
