@@ -25,5 +25,4 @@ yarn-error.log*
 #firebase
 .firebase*
 
-# exclue debug.log
-/debug.log
+*.log
