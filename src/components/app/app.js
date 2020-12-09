@@ -19,11 +19,11 @@ import { SwapiServiceProvider } from "../swapi-service-context/";
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
-
   state = {
     showRandomPlanet: false,
     hasError: false,
+    swapiService: new DummySwapiService(),
+    serviceType: "Offline",
   };
 
   ontoggleBtnClicked = () => {
@@ -39,15 +39,32 @@ export default class App extends Component {
     this.setState({ hasError: true });
   }
 
+  onServiceChange = () => {
+    this.setState(({ swapiService }) => {
+
+      const [service, serviceType] = (swapiService instanceof SwapiService)
+        ? [DummySwapiService, "Offline"]
+        : [SwapiService, "Online"];
+
+      return {
+        swapiService: new service(),
+        serviceType: serviceType,
+      };
+    });
+  };
+
   render() {
     const { showRandomPlanet, hasError } = this.state;
 
     if (hasError) { return <ErrorIndicator />; }
 
     return (
-      <SwapiServiceProvider value={ this.swapiService }>
+      <SwapiServiceProvider value={ this.state.swapiService }>
         <div className="container" >
-          <Nav />
+          <Nav
+            onServiceChange={ this.onServiceChange }
+            serviceType={ this.state.serviceType }
+          />
 
           <ToggleBtn
             toggleBtnClicked={ this.ontoggleBtnClicked }

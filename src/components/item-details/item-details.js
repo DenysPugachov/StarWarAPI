@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SwapiService from "../../service/swapi-service-offline";
 import ErrorBoundary from "../error-boundary/error-boundary";
 import ErrorBtn from "../error-btn/error-btn";
 import Spinner from "../spinner";
@@ -16,8 +15,6 @@ const Record = ({ item, label, field }) => {
 export { Record };
 
 export default class ItemDetails extends Component {
-
-  swapiService = new SwapiService();
 
   state = {
     item: null,
@@ -37,7 +34,10 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.personId !== prevProps.personId) {
+    // console.log(this.props);
+    if (this.props.personId !== prevProps.personId ||
+      this.props.getData !== prevProps.getData ||
+      this.props.getImg !== prevProps.getImg) {
       this.setState({ loading: true });
       this.updateItem();
     }
