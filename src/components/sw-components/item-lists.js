@@ -1,17 +1,7 @@
 import React from "react";
-import SwapiService from "../../service/swapi-service-offline";
 import withDataHOC from "../hoc-helper/with-data-hoc";
 import ItemList from "../item-list/item-list";
 import { withSwapiService } from "../hoc-helper";;
-
-
-// const swapiService = new SwapiService();
-
-// const {
-//   getAllPeople,
-//   getAllStarships,
-//   getAllPlanets,
-// } = swapiService;
 
 //composition f(g(x))
 const withChildFunction = (Wrapper, fn) => {
@@ -39,18 +29,15 @@ const mapPlanetMethodsToProps = swapiService => {
 const renderName = ({ name }) => <span>{ name }</span>;
 
 const PersonList = withSwapiService(
-  withDataHOC(
-    withChildFunction(ItemList, renderName)),
+  withDataHOC(withChildFunction(ItemList, renderName)),
   mapPersonMethodsToProps);
 
 const StarshipsList = withSwapiService(
-  withDataHOC(
-    withChildFunction(ItemList, renderName)),
+  withDataHOC(withChildFunction(ItemList, renderName)),
   mapStarshipMethodsToProps);
 
 const PlanetList = withSwapiService(
-  withDataHOC(
-    withChildFunction(ItemList, renderName)),
+  withDataHOC(withChildFunction(ItemList, renderName)),
   mapPlanetMethodsToProps);
 
 

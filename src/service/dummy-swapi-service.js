@@ -59,7 +59,8 @@ export default class DummySwapiService {
     return this._people;
   };
 
-  getPerson = async () => {
+  getPerson = async (id) => {
+    console.log(id);
     return this._people[0];
   };
 

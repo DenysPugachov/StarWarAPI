@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SwapiService from "../../service/swapi-service-offline";
+import SwapiService from "../../service/dummy-swapi-service";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import Spinner from "../spinner";
 

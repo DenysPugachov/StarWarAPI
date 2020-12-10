@@ -8,11 +8,21 @@ const withDataHOC = (View) => {
       data: null,
     };
 
-    componentDidMount() {
+    update() {
       this.props.getData()
         .then(data => {
           this.setState({ data });
         });
+    }
+
+    componentDidMount() {
+      this.update();
+    }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.getData !== prevProps.getData) {
+        this.update();
+      }
     }
 
     render() {

@@ -24,7 +24,6 @@ export default class ItemDetails extends Component {
   updateItem() {
     const { itemId, getData } = this.props;
     if (!itemId) { return; }
-
     getData(itemId)
       .then((item) => this.setState({ item, loading: false, }));
   }
@@ -34,12 +33,13 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(this.props);
+    console.log(this.props);
     if (this.props.personId !== prevProps.personId ||
       this.props.getData !== prevProps.getData ||
       this.props.getImg !== prevProps.getImg) {
       this.setState({ loading: true });
       this.updateItem();
+      console.log("componentDidUpdate+updateItem");
     }
   }
 
