@@ -15,17 +15,25 @@ const Record = ({ item, label, field }) => {
 export { Record };
 
 export default class ItemDetails extends Component {
-
   state = {
-    item: null,
+    item: 1,
     loading: true,
+    itemImg: ""
   };
 
   updateItem() {
-    const { itemId, getData } = this.props;
-    if (!itemId) { return; }
-    getData(itemId)
-      .then((item) => this.setState({ item, loading: false, }));
+    console.log('updateItem', this.props);
+
+    const { itemId, getData, getImg } = this.props;
+    if (!itemId) {
+      return;
+    }
+
+    getData(itemId).then(item => this.setState({ item, loading: false }));
+
+    console.log("getImg", getImg(itemId));
+    const itemImg = getImg(itemId);
+    this.setState({ itemImg });
   }
 
   componentDidMount() {
@@ -33,10 +41,11 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props);
-    if (this.props.personId !== prevProps.personId ||
+    if (
+      this.props.itemId !== prevProps.itemId ||
       this.props.getData !== prevProps.getData ||
-      this.props.getImg !== prevProps.getImg) {
+      this.props.getImg !== prevProps.getImg
+    ) {
       this.setState({ loading: true });
       this.updateItem();
       console.log("componentDidUpdate+updateItem");
@@ -46,39 +55,47 @@ export default class ItemDetails extends Component {
   render() {
     if (!this.state.item) {
       return (
-        <div className="card ml-3 mb-3 list-group-item" >
+        <div className="card ml-3 mb-3 list-group-item">
           <h3 className="m-auto">Select item ...</h3>
         </div>
       );
     }
 
-    const { loading, item, item: { name } } = this.state;
+    const {
+      loading,
+      item,
+      item: { name },
+    } = this.state;
 
-    if (loading) { return (<Spinner />); }
+    if (loading) {
+      return <Spinner />;
+    }
 
     return (
       <ErrorBoundary>
-        <div className="card flex-row mb-3 border-secondary " >
+        <div className="card flex-row mb-3 border-secondary ">
           <div className="col-md-5">
-            <img className="m-3 rounded detail-img img-fluid"
-              src={ this.props.getImg() }
-              alt="Img here..." />
+            <img
+              className="m-3 rounded detail-img img-fluid"
+              src={ this.state.itemImg }
+              alt="Img here..."
+            />
           </div>
-          <div className="card-body pb-0 " >
-            <h3 className="card-title">{ name } { this.props.personId }</h3>
+          <div className="card-body pb-0 ">
+            <h3 className="card-title">
+              { name } { this.props.personId }
+            </h3>
             <ul className=" list-group-flush p-0">
-              {
-                React.Children.map(this.props.children, child => {
-                  //React element are IMMUTABLE!!!
-                  //copy elem + prop "item";
-                  return React.cloneElement(child, { item });
-                })
-              }
+              { React.Children.map(this.props.children, child => {
+                //React element are IMMUTABLE!!!
+                //copy elem + prop "item";
+                return React.cloneElement(child, { item });
+              }) }
               <ErrorBtn />
             </ul>
-          </div >
-        </div >
+          </div>
+        </div>
       </ErrorBoundary>
     );
   }
-};
+}
