@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Row from "../row-container/row-container";
-import {  StarshipDetails, StarshipsList } from "../sw-components";
+import { StarshipDetails, StarshipsList } from "../sw-components";
 
 
 export default class StarshipPage extends Component {
 
   state = {
-    selectedId: 1,
+    selectedId: null,
   };
 
   onItemSelected = selectedId => {

@@ -17,10 +17,10 @@ import {
 export default class App extends Component {
 
   state = {
-    showRandomPlanet: false,
+    showRandomPlanet: true,
     hasError: false,
-    swapiService: new DummySwapiService(),
-    serviceType: "Offline",
+    swapiService: new SwapiService(),
+    serviceType: "Online",
   };
 
   ontoggleBtnClicked = () => {
