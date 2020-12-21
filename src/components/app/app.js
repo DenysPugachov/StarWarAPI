@@ -6,13 +6,13 @@ import ErrorBtn from "../error-btn/error-btn";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../service/swapi-service";
 import DummySwapiService from "../../service/dummy-swapi-service";
-
 import { SwapiServiceProvider } from "../swapi-service-context/";
 import {
   PersonPage,
   PlanetPage,
   StarshipPage
 } from "../pages";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 export default class App extends Component {
 
@@ -56,27 +56,29 @@ export default class App extends Component {
     if (hasError) { return <ErrorIndicator />; }
 
     return (
-      <SwapiServiceProvider value={ this.state.swapiService }>
-        <div className="container" >
-          <Nav
-            onServiceChange={ this.onServiceChange }
-            serviceType={ this.state.serviceType }
-          />
+      <Router>
+        <SwapiServiceProvider value={ this.state.swapiService }>
+          <div className="container" >
+            <Nav
+              onServiceChange={ this.onServiceChange }
+              serviceType={ this.state.serviceType }
+            />
 
-          <ToggleBtn
-            toggleBtnClicked={ this.ontoggleBtnClicked }
-          />
+            <ToggleBtn
+              toggleBtnClicked={ this.ontoggleBtnClicked }
+            />
 
-          <ErrorBtn />
+            <ErrorBtn />
 
-          { showRandomPlanet ? <RandomPlanet /> : null }
+            { showRandomPlanet ? <RandomPlanet /> : null }
 
-          <PersonPage />
-          <PlanetPage />
-          <StarshipPage />
+            <Route path="/people" component={ PersonPage } />
+            <Route path="/planet" component={ PlanetPage } />
+            <Route path="/starship" component={ StarshipPage } />
 
-        </div >
-      </SwapiServiceProvider>
+          </div >
+        </SwapiServiceProvider>
+      </Router>
     );
   }
 };

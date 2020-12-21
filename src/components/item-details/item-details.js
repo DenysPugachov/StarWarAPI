@@ -16,11 +16,7 @@ export { Record };
 
 export default class ItemDetails extends Component {
   state = {
-<<<<<<< HEAD
     item: 3,
-=======
-    item: 1,
->>>>>>> bcdd8127c00dbfad94be5a5df46656e35a677740
     loading: true,
     itemImg: ""
   };
