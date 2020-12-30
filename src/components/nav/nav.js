@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 export default function Nav({ onServiceChange, serviceType }) {
 
@@ -12,13 +13,13 @@ export default function Nav({ onServiceChange, serviceType }) {
         <a className="navbar-brand" href="/"><span className="h2">StarDB</span></a>
         <ul className="navbar-nav justify-content-around w-50">
           <li className="nav-item">
-            <a className="nav-link text-success" href="/">People</a>
+            <Link className="nav-link text-success" to="/people">People </Link>
           </li>
           <li className="navbar-item">
-            <a className="nav-link text-success" href="/">Planet</a>
+            <Link className="nav-link text-success" to="/planets">Planet</Link>
           </li>
           <li className="navbar-item">
-            <a className="nav-link text-success" href="/">StarShip</a>
+            <Link className="nav-link text-success" to="/starships">StarShip</Link>
           </li>
           <li className="navbar-item">
             <button

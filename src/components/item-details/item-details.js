@@ -12,32 +12,25 @@ const Record = ({ item, label, field }) => {
     </li>
   );
 };
-export { Record };
+export { Record }; 
 
 export default class ItemDetails extends Component {
   state = {
-<<<<<<< HEAD
     item: 3,
-=======
-    item: 1,
->>>>>>> bcdd8127c00dbfad94be5a5df46656e35a677740
     loading: true,
     itemImg: ""
   };
 
   updateItem() {
-    console.log('updateItem', this.props);
-
+    // console.log('updateItem', this.props);
     const { itemId, getData, getImg } = this.props;
     if (!itemId) {
       return;
     }
-
-    getData(itemId).then(item => this.setState({ item, loading: false }));
-
-    console.log("getImg", getImg(itemId));
     const itemImg = getImg(itemId);
-    this.setState({ itemImg });
+    getData(itemId).then(item => this.setState({ item, loading: false, itemImg }));
+    // console.log("getImg", getImg(itemId));
+    // this.setState({ itemImg });
   }
 
   componentDidMount() {

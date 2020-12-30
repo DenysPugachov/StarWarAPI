@@ -6,18 +6,19 @@ import ErrorBtn from "../error-btn/error-btn";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../service/swapi-service";
 import DummySwapiService from "../../service/dummy-swapi-service";
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
 import { SwapiServiceProvider } from "../swapi-service-context/";
 import {
   PersonPage,
   PlanetPage,
-  StarshipPage
+  StarshipPage 
 } from "../pages";
 
 export default class App extends Component {
 
   state = {
-    showRandomPlanet: true,
+    showRandomPlanet: true, 
     hasError: false,
     swapiService: new SwapiService(),
     serviceType: "Online",
@@ -28,7 +29,7 @@ export default class App extends Component {
       return {
         showRandomPlanet: !showRandomPlanet
       };
-    });
+    }); 
   };
 
   componentDidCatch() {
@@ -47,7 +48,7 @@ export default class App extends Component {
         swapiService: new service(),
         serviceType: serviceType,
       };
-    });
+    }); 
   };
 
   render() {
@@ -57,7 +58,8 @@ export default class App extends Component {
 
     return (
       <SwapiServiceProvider value={ this.state.swapiService }>
-        <div className="container" >
+        <Router>
+        <div className="container" > 
           <Nav
             onServiceChange={ this.onServiceChange }
             serviceType={ this.state.serviceType }
@@ -71,11 +73,12 @@ export default class App extends Component {
 
           { showRandomPlanet ? <RandomPlanet /> : null }
 
-          <PersonPage />
-          <PlanetPage />
-          <StarshipPage />
+          <Route path="/people" component={PersonPage}/>
+          <Route path="/planets" component={PlanetPage}/>
+          <Route path="/starships" component={StarshipPage}/>
 
         </div >
+      </Router>
       </SwapiServiceProvider>
     );
   }
